@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useState, useRef } from "react"
 import styles from "./FormWithValidation.module.css"
 
@@ -28,6 +27,9 @@ export default function FormWithValidation() {
       error = "В пароле допустимы только буквы, цифры и нижнее подчеркивание"
     } else if (formData.password !== formData.passwordConfirmation) {
       error = "Пароли не совпадают"
+    } else if (error === null) {
+      submitBtnRef.current.disabled = false
+      submitBtnRef.current.focus()
     }
 
     setErrors(error)
@@ -35,18 +37,14 @@ export default function FormWithValidation() {
 
   function onChange(fieldName, value) {
     setFormData({ ...formData, [fieldName]: value })
+    checkFields({ ...formData, [fieldName]: value })
   }
-  useEffect(() => {
-    if (!checkFields(formData)) {
-      console.log(submitBtnRef.current)
-      submitBtnRef.current.focus()
-    }
-  })
+
+  let hasError = errors !== null || Object.values(formData).some((value) => value === "")
 
   return (
     <form
       onSubmit={(e) => {
-        // e.preventDefault()
         console.log("form submitted", formData)
       }}
     >
@@ -59,7 +57,6 @@ export default function FormWithValidation() {
         id="email"
         value={email}
         onChange={({ target }) => onChange("email", target.value)}
-        onBlur={() => checkFields(formData)}
       />
       <br />
       <label htmlFor="password">Введите пароль:</label>
@@ -69,7 +66,6 @@ export default function FormWithValidation() {
         id="password"
         value={password}
         onChange={({ target }) => onChange("password", target.value)}
-        onBlur={() => checkFields(formData)}
       />
       <br />
       <label htmlFor="passwordConfirmation">Подтвердите пароль:</label>
@@ -79,10 +75,9 @@ export default function FormWithValidation() {
         id="passwordConfirmation"
         value={passwordConfirmation}
         onChange={({ target }) => onChange("passwordConfirmation", target.value)}
-        onBlur={() => checkFields(formData)}
       />
       <br />
-      <button type="submit" disabled={errors} ref={submitBtnRef}>
+      <button type="submit" disabled={hasError} ref={submitBtnRef}>
         submit form
       </button>
     </form>
