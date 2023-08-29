@@ -7,7 +7,7 @@ export default function FormWithValidation() {
     password: "",
     passwordConfirmation: "",
   })
-  const [errors, setErrors] = useState(null)
+  const [error, setError] = useState(null)
   const { email, password, passwordConfirmation } = formData
   const submitBtnRef = useRef()
 
@@ -16,67 +16,70 @@ export default function FormWithValidation() {
       email:
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       password: /^[\w_]*$/,
-      passwordConfirmation: /^[\w_]*$/,
     }
-    let error = null
+
+    let newError = null
     if (formData.email === "" || formData.password === "") {
-      error = "Поля не могут быть пустыми"
+      newError = "Поля не могут быть пустыми"
     } else if (!regexMap.email.test(formData.email)) {
-      error = "Проверьте правильность ввода email"
-    } else if (!regexMap.password.test(formData.password)) {
-      error = "В пароле допустимы только буквы, цифры и нижнее подчеркивание"
+      newError = "Проверьте правильность ввода email"
+    } else if (
+      !regexMap.password.test(formData.password) ||
+      !regexMap.password.test(formData.passwordConfirmation)
+    ) {
+      newError = "В паролях допустимы только буквы, цифры и нижнее подчеркивание"
     } else if (formData.password !== formData.passwordConfirmation) {
-      error = "Пароли не совпадают"
-    } else if (error === null) {
+      newError = "Пароли не совпадают"
+    } else if (newError === null) {
       submitBtnRef.current.disabled = false
       submitBtnRef.current.focus()
     }
 
-    setErrors(error)
+    setError(newError)
   }
 
-  function onChange(fieldName, value) {
-    setFormData({ ...formData, [fieldName]: value })
-    checkFields({ ...formData, [fieldName]: value })
+  function onChange({ target }) {
+    setFormData({ ...formData, [target.name]: target.value })
+    checkFields({ ...formData, [target.name]: target.value })
   }
 
-  let hasError = errors !== null || Object.values(formData).some((value) => value === "")
+  let hasError = error !== null || Object.values(formData).some((value) => value === "")
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={() => {
         console.log("form submitted", formData)
       }}
     >
-      <div>Заполните поля формы:</div>
-      {errors && <div className={styles.errors}>{errors}</div>}
-      <label htmlFor="email">Введите адрес почты:</label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        value={email}
-        onChange={({ target }) => onChange("email", target.value)}
-      />
-      <br />
-      <label htmlFor="password">Введите пароль:</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        value={password}
-        onChange={({ target }) => onChange("password", target.value)}
-      />
-      <br />
-      <label htmlFor="passwordConfirmation">Подтвердите пароль:</label>
-      <input
-        type="password"
-        name="passwordConfirmation"
-        id="passwordConfirmation"
-        value={passwordConfirmation}
-        onChange={({ target }) => onChange("passwordConfirmation", target.value)}
-      />
-      <br />
+      <div>
+        <strong>Заполните поля формы:</strong>
+      </div>
+      {error && <div className={styles.errors}>{error}</div>}
+      <div>
+        <label htmlFor="email">Введите адрес почты:</label>
+        <input type="text" name="email" id="email" value={email} onChange={onChange} />
+        <br />
+      </div>
+      <div>
+        <label htmlFor="password">Введите пароль:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value={password}
+          onChange={onChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="passwordConfirmation">Подтвердите пароль:</label>
+        <input
+          type="password"
+          name="passwordConfirmation"
+          id="passwordConfirmation"
+          value={passwordConfirmation}
+          onChange={onChange}
+        />
+      </div>
       <button type="submit" disabled={hasError} ref={submitBtnRef}>
         submit form
       </button>
