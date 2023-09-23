@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { MainPageLayout } from "./MainPage.layout.jsx"
 
 export function MainPage() {
   const [tasks, setTasks] = useState([])
-  const [refreshState, setRefreshState] = useState(false)
-  const timeout = useRef()
+  const [refreshState, setRefreshState] = useState(false) //used to reload task list
+  const timeout = useRef() //used to set debounced search function
 
-  console.log("tasks: ", tasks)
   const state = { tasks, setTasks, refreshState, setRefreshState, timeout }
 
   useEffect(() => {

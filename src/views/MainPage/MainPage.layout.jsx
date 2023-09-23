@@ -19,7 +19,5 @@ export const MainPageLayout = ({ tasks, state }) => (
     <CreateTaskForm addTask={(text) => createTaskHandler(text, state)} state={state} />
     <SortComponent sortTasks={() => sortHandler(state)} />
     <SearchForm searchTodo={(text) => searchHandler(state, text)} />
-
-    {/* searchTasks */}
   </div>
 )

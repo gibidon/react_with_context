@@ -9,7 +9,6 @@ export default function CreateTaskForm({ addTask, state }) {
       className="add_task"
       onSubmit={(e) => {
         e.preventDefault()
-        console.log("intutState before submittiing", inputState)
         addTask(inputState)
         state.setRefreshState(!state.refreshState)
       }}

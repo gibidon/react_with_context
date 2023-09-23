@@ -5,6 +5,4 @@ export const editHandler = (newValue, id) => {
     headers: { "Content-Type": "application/json;charset=utf-8" },
     body: JSON.stringify({ title: newValue }),
   })
-  // .then(state.updateRefreshState())
-  // .finally(state.cancelEditing())
 }

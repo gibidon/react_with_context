@@ -8,17 +8,9 @@ export function TaskLayout({
   editingNow,
   setEditingNow,
 }) {
-  // return (
-  //   <>
-  //     <div data-id={taskState.id}>{taskState.title}</div>
-  //     <button>edit</button>
-  //     <button onClick={() => removeTask()}>delete</button>
-  //     <button onClick={() => moveBack()}>back</button>
-  //   </>
-  // )
   return (
     <>
-      <div data-id={taskState.id}>{taskState.title}</div>
+      <div>{taskState.title}</div>
       <button onClick={() => setEditingNow(true)}>edit</button>
       <button onClick={() => removeTask()}>delete</button>
       <button onClick={() => moveBack()}>back</button>
