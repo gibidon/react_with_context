@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import styles from "./EditTemplate.module.css"
 
-export default function EditTemplate({ edit, cancelUpdate }) {
+export function EditTemplate({ edit, cancelUpdate }) {
   const [state, setState] = useState("")
   return (
     <div className={styles.edit_module}>

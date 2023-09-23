@@ -1,7 +1,6 @@
-import React from "react"
 import { useState } from "react"
 
-export default function CreateTaskForm({ addTask, state }) {
+export function CreateTaskForm({ createTask, state }) {
   const [inputState, setInputState] = useState("")
 
   return (
@@ -9,19 +8,19 @@ export default function CreateTaskForm({ addTask, state }) {
       className="add_task"
       onSubmit={(e) => {
         e.preventDefault()
-        addTask(inputState)
-        state.setRefreshState(!state.refreshState)
+        createTask(inputState)
+        setInputState("")
       }}
     >
-      <label htmlFor="add_task">Add new todo:</label>
+      <label htmlFor="create_task">Add new task:</label>
       <input
         value={inputState}
-        id="add_task"
+        id="create_task"
         type="text"
         placeholder="enter new task"
         onChange={(e) => setInputState(e.target.value)}
       />
-      <button type="submit">Add todo</button>
+      <button type="submit">Add task</button>
     </form>
   )
 }

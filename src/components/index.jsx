@@ -1,1 +1,6 @@
 export * from "./SearchForm"
+export * from "./CreateTaskForm/CreateTaskForm"
+export * from "./EditTemplate/EditTemplate"
+export * from "./SortComponent/SortComponent"
+export * from "./TaskTemplate/TaskTemplate"
+export * from "./TaskList/TaskList"

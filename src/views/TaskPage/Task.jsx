@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { TaskLayout } from "./TaskLayout"
-import { removeHandler, editHandler } from "../../handlers"
+import { removeHandler } from "../../handlers"
 
 export function Task() {
   const [taskState, setTaskState] = useState(null)
@@ -9,16 +9,11 @@ export function Task() {
   const params = useParams()
   const navigate = useNavigate()
 
-  console.log("paramsId:", params.id)
-  console.log("taskState", taskState)
-
   useEffect(() => {
     fetch(`http://localhost:3000/todos/${params.id}`)
       .then((response) => response.json())
       .then((loadedTask) => {
-        console.log("loasdedTask-", loadedTask)
         if (!loadedTask.title) {
-          console.log("no such task")
           navigate("/404")
           return
         } else {

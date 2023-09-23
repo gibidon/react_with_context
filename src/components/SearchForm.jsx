@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function SearchForm({ searchTodo }) {
+export function SearchForm({ searchTodo }) {
   const [inputState, setInputState] = useState("")
 
   return (

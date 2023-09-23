@@ -3,7 +3,7 @@ import styles from "./TaskTemplate.module.scss"
 import { useState } from "react"
 import { removeHandler } from "../../handlers/removeHandler"
 
-export default function TaskTemplate({ title, id }) {
+export function TaskTemplate({ title, id }) {
   const [isEditing, setIsEditing] = useState(false)
 
   return (

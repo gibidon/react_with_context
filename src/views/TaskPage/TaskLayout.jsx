@@ -1,4 +1,4 @@
-import EditTemplate from "../../components/EditTemplate/EditTemplate"
+import { EditTemplate } from "../../components"
 import { editHandler } from "../../handlers"
 
 export function TaskLayout({
