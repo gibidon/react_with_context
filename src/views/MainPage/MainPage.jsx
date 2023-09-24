@@ -4,7 +4,7 @@ import { MainPageLayout } from "./MainPage.layout.jsx"
 export function MainPage() {
   const [tasks, setTasks] = useState([])
   const [refreshState, setRefreshState] = useState(false) //used to reload task list
-  const timeout = useRef() //used to set debounced search function
+  const timeout = useRef() //used to set debounced search function in it
 
   const state = { tasks, setTasks, refreshState, setRefreshState, timeout }
 

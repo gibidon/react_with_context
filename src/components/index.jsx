@@ -1,4 +1,4 @@
-export * from "./SearchForm"
+export * from "./SearchForm/SearchForm"
 export * from "./CreateTaskForm/CreateTaskForm"
 export * from "./EditTemplate/EditTemplate"
 export * from "./SortComponent/SortComponent"

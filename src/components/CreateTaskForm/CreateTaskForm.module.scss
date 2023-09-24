@@ -1,0 +1,20 @@
+@mixin basic-button {
+  padding: 0.5rem;
+  border-radius: 5px;
+  min-width: 60px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: medium;
+  font-family: inherit;
+  max-width: 120px;
+}
+
+.create_task_form {
+  display: flex;
+  gap: 1rem;
+}
+.submit_btn {
+  @include basic-button;
+  background-color: black;
+  color: white;
+}

@@ -1,12 +1,18 @@
-.mainPage {
-  // color: rgb(27, 6, 6);
-}
-
 .task {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.task a {
-  //   text-decoration: none;
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.h3 {
+  color: rgb(0, 0, 0);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.5rem;
 }

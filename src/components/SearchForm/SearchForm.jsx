@@ -1,10 +1,11 @@
 import { useState } from "react"
+import styles from "./searchForm.module.scss"
 
 export function SearchForm({ searchTodo }) {
   const [inputState, setInputState] = useState("")
 
   return (
-    <div>
+    <div className={styles.form}>
       <label htmlFor="search_text">Search todo by keywords:</label>
       <input
         value={inputState}

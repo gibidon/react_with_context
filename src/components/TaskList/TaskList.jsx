@@ -6,7 +6,9 @@ export function TaskList({ tasks }) {
     <ul className={styles.taskList}>
       {tasks.map((task) => (
         <li key={task.id}>
-          <NavLink to={`task/${task.id}`}>{task.title}</NavLink>
+          <NavLink to={`task/${task.id}`} className={styles.NavLink}>
+            {task.title}
+          </NavLink>
         </li>
       ))}
     </ul>

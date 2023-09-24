@@ -4,7 +4,7 @@ import { createTaskHandler, sortHandler, searchHandler } from "../../handlers"
 
 export const MainPageLayout = ({ tasks, state }) => (
   <div className={styles.mainPage}>
-    <h3>Main page</h3>
+    <h3 className={styles.h3}>Main page</h3>
     <TaskList tasks={tasks} />
     <CreateTaskForm createTask={(text) => createTaskHandler(text, state)} state={state} />
     <SortComponent sortTasks={() => sortHandler(state)} />
