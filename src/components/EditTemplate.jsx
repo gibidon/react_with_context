@@ -1,26 +1,32 @@
-import React from "react"
 import { useState } from "react"
 import styles from "./EditTemplate.module.css"
 
-export function EditTemplate({ edit, cancelUpdate }) {
+export const EditTemplate = ({ update, cancelTodoUpdate }) => {
   const [state, setState] = useState("")
+
   return (
     <div className={styles.edit_module}>
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          edit(state)
+          update(state)
         }}
         className={styles.edit_content}
       >
-        <input
+        {/* <input
+          type="text"
+          placeholder="edit task"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+        /> */}
+        <textarea
           type="text"
           placeholder="edit task"
           value={state}
           onChange={(e) => setState(e.target.value)}
         />
         <button type="submit">Edit</button>
-        <button onClick={cancelUpdate}>Cancel</button>
+        <button onClick={cancelTodoUpdate}>Cancel</button>
       </form>
     </div>
   )
