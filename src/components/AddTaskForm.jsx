@@ -1,4 +1,3 @@
-import React from "react"
 import { useState } from "react"
 
 export const AddTaskForm = ({ addTask }) => {
@@ -10,6 +9,7 @@ export const AddTaskForm = ({ addTask }) => {
       onSubmit={(e) => {
         e.preventDefault()
         addTask(inputState)
+        setInputState("")
       }}
     >
       <label htmlFor="add_task">Add new todo:</label>

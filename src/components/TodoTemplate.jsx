@@ -1,9 +1,11 @@
 import styles from "./TodoTemplate.module.scss"
 import { EditTemplate } from "./EditTemplate"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { AppContext } from "../contexts/AppContext"
 
 export const TodoTemplate = ({ title, removeTodo, id, updateTodo }) => {
   const [isEditing, setIsEditing] = useState(false)
+  const { todos, dispatch } = useContext(AppContext)
 
   return (
     <>
@@ -12,7 +14,11 @@ export const TodoTemplate = ({ title, removeTodo, id, updateTodo }) => {
         <button className={styles.todo_edit_btn} onClick={() => setIsEditing(true)}>
           Edit
         </button>
-        <button className={styles.todo_remove_btn} onClick={removeTodo}>
+        {/* <button className={styles.todo_remove_btn} onClick={removeTodo}> */}
+        <button
+          className={styles.todo_remove_btn}
+          onClick={() => dispatch({ type: "REMOVE_TODO", payload: id })}
+        >
           Delete
         </button>
 
@@ -20,7 +26,8 @@ export const TodoTemplate = ({ title, removeTodo, id, updateTodo }) => {
           <EditTemplate
             cancelTodoUpdate={() => setIsEditing(false)}
             update={(newText) => {
-              updateTodo(newText)
+              // updateTodo(newText)
+              dispatch({ type: "UPDATE_TODO", payload: { id, newText } })
               setIsEditing(false)
             }}
           />

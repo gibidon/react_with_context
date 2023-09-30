@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import styles from "./EditTemplate.module.css"
+import { AppContext } from "../contexts/AppContext"
 
 export const EditTemplate = ({ update, cancelTodoUpdate }) => {
   const [state, setState] = useState("")
+  const { todos, dispatch } = useContext(AppContext)
 
   return (
     <div className={styles.edit_module}>

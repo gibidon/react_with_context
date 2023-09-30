@@ -1,8 +1,9 @@
-import React from "react"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { AppContext } from "../contexts/AppContext"
 
 export const SearchForm = ({ searchTodo }) => {
   const [inputState, setInputState] = useState("")
+  const { todos, dispatch } = useContext(AppContext)
 
   return (
     <div>
@@ -14,7 +15,8 @@ export const SearchForm = ({ searchTodo }) => {
         placeholder="enter the text"
         onChange={(e) => {
           setInputState(e.target.value)
-          searchTodo(e.target.value)
+          // searchTodo(e.target.value)
+          dispatch({ type: "SEARCH_TODO", payload: e.target.value })
         }}
       />
     </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { TodoTemplate, AddTaskForm, SearchForm } from "./components"
+import { AppContext } from "./contexts/AppContext"
 import "./main.scss"
 
 import {
@@ -14,6 +15,37 @@ import {
 const App = () => {
   const [todos, setTodos] = useState([])
   const timeout = useRef()
+
+  const dispatch = (action) => {
+    const { type, payload } = action
+    console.log("type and payload", type, payload)
+
+    switch (type) {
+      case "ADD_TODO": {
+        onAddTodo(payload)
+        break
+      }
+      case "REMOVE_TODO": {
+        onRemoveTodo(payload)
+        break
+      }
+      case "UPDATE_TODO": {
+        onUpdateTodo(payload.id, payload.newText)
+        break
+      }
+      case "SEARCH_TODO": {
+        onSearchTodos(payload)
+        break
+      }
+      case "SORT_TODOS": {
+        onSortTodo()
+        break
+      }
+
+      default:
+      // do nothing
+    }
+  }
 
   const onAddTodo = (newText) => {
     addTodo(newText).then((newTodo) => {
@@ -62,23 +94,34 @@ const App = () => {
       updateTodo={(newText) => {
         onUpdateTodo(todo.id, newText)
       }}
-      removeTodo={() => onRemoveTodo(todo.id)}
+      // removeTodo={() => onRemoveTodo(todo.id)}
     />
   ))
 
   return (
-    <div className="container">
-      <h2>My todos:</h2>
-      <div className="todo_main">{todoElems}</div>
-      <br />
-      <div className="todo_controls">
-        <AddTaskForm addTask={(newTaskText) => onAddTodo(newTaskText)} />
-        <SearchForm searchTodo={(text) => onSearchTodos(text)} />
-        <button onClick={onSortTodo} className="sortBtn">
-          Sort todos by name
-        </button>
+    <AppContext.Provider value={{ todos, dispatch }}>
+      <div className="container">
+        <h2>My todos:</h2>
+        <div className="todo_main">{todoElems}</div>
+        <br />
+        <div className="todo_controls">
+          {/* <AddTaskForm addTask={(newTaskText) => onAddTodo(newTaskText)} /> */}
+          <AddTaskForm
+            addTask={(newTaskText) =>
+              dispatch({ type: "ADD_TODO", payload: newTaskText })
+            }
+          />
+          <SearchForm searchTodo={(text) => onSearchTodos(text)} />
+          {/* <button onClick={onSortTodo} className="sortBtn"> */}
+          <button
+            onClick={() => dispatch({ type: "SORT_TODOS", payload: {} })}
+            className="sortBtn"
+          >
+            Sort todos by name
+          </button>
+        </div>
       </div>
-    </div>
+    </AppContext.Provider>
   )
 }
 
