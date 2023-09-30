@@ -1,5 +1,6 @@
 import { useState, useContext } from "react"
-import { AppContext } from "../contexts/AppContext"
+// import { AppContext } from "../../../contexts/AppContext"
+import { AppContext } from "../../../../contexts/AppContext"
 
 export const SearchForm = ({ searchTodo }) => {
   const [inputState, setInputState] = useState("")

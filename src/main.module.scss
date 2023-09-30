@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Raleway";
+  src: url("./assets//fonts/Raleway-Medium.ttf") format("truetype");
+}
+
+@mixin basic-button {
+  padding: 0.5rem;
+  border-radius: 5px;
+  min-width: 60px;
+  cursor: pointer;
+  font-size: medium;
+  font-family: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(167, 181, 215);
+  background: radial-gradient(
+    circle,
+    rgba(167, 181, 215, 1) 0%,
+    rgba(199, 228, 221, 1) 100%
+  );
+  font-family: "Raleway", sans-serif;
+  // position: relative;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding-top: 2rem;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.container .header {
+  color: rgb(0, 0, 0);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.5rem;
+  margin: 1rem 0;
+}
+
+.controlPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgba(164, 194, 250, 0.7);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 1rem 0.5rem;
+  font-weight: 700;
+}

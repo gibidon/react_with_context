@@ -16,7 +16,6 @@
   border-radius: 10px;
   opacity: 0.9;
   min-height: 2.5rem;
-  z-index: 0.9;
 }
 
 .todo_text {
@@ -27,6 +26,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  z-index: 0.95;
 }
 .todo .todo_edit_btn {
   @include basic-button;

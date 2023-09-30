@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react"
-import { TodoTemplate, AddTaskForm, SearchForm } from "./components"
+import { TodoTemplate, ControlPanel } from "./components"
 import { AppContext } from "./contexts/AppContext"
-import "./main.scss"
+import styles from "./main.module.scss"
 
 import {
   readTodos,
@@ -18,7 +18,6 @@ const App = () => {
 
   const dispatch = (action) => {
     const { type, payload } = action
-    console.log("type and payload", type, payload)
 
     switch (type) {
       case "ADD_TODO": {
@@ -56,8 +55,6 @@ const App = () => {
 
   const onUpdateTodo = (id, newText) => {
     updateTodo(id, newText).then(() => {
-      let todoForUpdate = todos.find((todo) => todo.id === id)
-      console.log("todoForpdate ", todoForUpdate)
       setTodos(todos.map((todo) => (todo.id === id ? { id: id, title: newText } : todo)))
     })
   }
@@ -86,40 +83,14 @@ const App = () => {
     })
   }, [])
 
-  let todoElems = todos.map((todo) => (
-    <TodoTemplate
-      key={todo.id}
-      title={todo.title}
-      id={todo.id}
-      updateTodo={(newText) => {
-        onUpdateTodo(todo.id, newText)
-      }}
-      // removeTodo={() => onRemoveTodo(todo.id)}
-    />
-  ))
+  let todoElems = todos.map((todo) => <TodoTemplate key={todo.id} id={todo.id} />)
 
   return (
     <AppContext.Provider value={{ todos, dispatch }}>
-      <div className="container">
-        <h2>My todos:</h2>
-        <div className="todo_main">{todoElems}</div>
-        <br />
-        <div className="todo_controls">
-          {/* <AddTaskForm addTask={(newTaskText) => onAddTodo(newTaskText)} /> */}
-          <AddTaskForm
-            addTask={(newTaskText) =>
-              dispatch({ type: "ADD_TODO", payload: newTaskText })
-            }
-          />
-          <SearchForm searchTodo={(text) => onSearchTodos(text)} />
-          {/* <button onClick={onSortTodo} className="sortBtn"> */}
-          <button
-            onClick={() => dispatch({ type: "SORT_TODOS", payload: {} })}
-            className="sortBtn"
-          >
-            Sort todos by name
-          </button>
-        </div>
+      <div className={styles.container}>
+        <header className={styles.header}>My todos:</header>
+        <div className={styles.todos}>{todoElems}</div>
+        <ControlPanel />
       </div>
     </AppContext.Provider>
   )

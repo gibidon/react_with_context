@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  gap: 1rem;
+}
+.form .formBtn {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  min-width: 60px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: medium;
+  font-family: inherit;
+  background-color: rgb(20, 110, 228);
+  color: white;
+}
+
+.formBtn:hover {
+  border-color: rgb(20, 110, 228);
+  background-color: white;
+  color: black;
+}

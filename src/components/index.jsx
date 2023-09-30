@@ -1,4 +1,3 @@
-export * from "./AddTaskForm"
-export * from "./EditTemplate"
-export * from "./SearchForm"
-export * from "./TodoTemplate"
+export * from "./ControlPanel/ControlPanel"
+export * from "./EditTemplate/EditTemplate"
+export * from "./TodoTemplate/TodoTemplate"
