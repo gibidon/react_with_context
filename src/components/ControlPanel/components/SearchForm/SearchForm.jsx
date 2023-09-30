@@ -2,9 +2,9 @@ import { useState, useContext } from "react"
 // import { AppContext } from "../../../contexts/AppContext"
 import { AppContext } from "../../../../contexts/AppContext"
 
-export const SearchForm = ({ searchTodo }) => {
+export const SearchForm = () => {
   const [inputState, setInputState] = useState("")
-  const { todos, dispatch } = useContext(AppContext)
+  const { dispatch } = useContext(AppContext)
 
   return (
     <div>

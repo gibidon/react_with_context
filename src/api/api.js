@@ -19,8 +19,8 @@ const fetchServer = (
     url += "?_sort=title"
   }
   if (searchMode) {
-    console.log("ss", payload.text)
-    url += `?q=${payload.text}`
+    // url += `?q=${payload.text}`
+    url += `?&title_like=${payload.text}`
   }
 
   return fetch(url, options).then((response) => response.json())
