@@ -1,13 +1,4 @@
-@mixin basic-button {
-  border: 1px solid transparent;
-  border-radius: 5px;
-  min-width: 60px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: medium;
-  font-family: inherit;
-  letter-spacing: 0.1em;
-}
+@use "../../styles/buttons";
 
 .todo {
   display: flex;
@@ -30,12 +21,12 @@
   z-index: 0.95;
 }
 .todo .todo_edit_btn {
-  @include basic-button;
+  @include buttons.basic-button();
   background-color: rgb(114, 158, 216);
   color: white;
 }
 .todo_remove_btn {
-  @include basic-button;
+  @include buttons.basic-button();
   background-color: rgb(248, 154, 66);
 }
 .todo:hover {

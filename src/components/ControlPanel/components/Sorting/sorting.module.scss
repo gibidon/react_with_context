@@ -1,12 +1,8 @@
+@use "../../../../styles/buttons";
+
 .sortBtn {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  min-width: 60px;
-  max-width: 130px;
-  cursor: pointer;
-  font-weight: 800;
-  font-size: medium;
+  @include buttons.basic-button();
+  max-width: 120px;
   font-family: inherit;
   background-color: rgb(20, 110, 228);
   color: white;

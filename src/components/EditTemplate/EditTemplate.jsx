@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styles from "./EditTemplate.module.css"
+import styles from "./EditTemplate.module.scss"
 
 export const EditTemplate = ({ update, cancelTodoUpdate }) => {
   const [state, setState] = useState("")
